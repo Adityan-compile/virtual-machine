@@ -2,7 +2,7 @@
 #define FLAGS_H
 
 struct Flags {
-    int S, Z, A, P;  // Status Flags
+    int S, Z;  // Status Flags
     void init() {
         S = Z = 0;
     }

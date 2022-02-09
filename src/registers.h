@@ -4,10 +4,10 @@
 #include<iostream>
 
 struct Registers {
-    int AX, BX, CX, DX;  // Registers
+    int AX, BX;  // Registers
     void init() {
         std::cout<<"Initializing Registers"<<std::endl;
-        AX = BX = CX = DX = 0;
+        AX = BX = 0;
     }
 };
 

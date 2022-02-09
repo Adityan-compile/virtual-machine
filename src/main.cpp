@@ -18,6 +18,10 @@ int main(void){
         LDA,
         1,
         P_AX,
+        LDB,
+        1,
+        ADD,
+        P_AX,
         HLT
     };
 
