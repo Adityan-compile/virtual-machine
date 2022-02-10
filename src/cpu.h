@@ -77,8 +77,8 @@ struct CPU {
     void exec(Memory& memory) {
         running = 1;
         while (running) {
-            int instr = fetch_instruction(memory);
-            switch (instr) {
+            registers.IR = fetch_instruction(memory);
+            switch (registers.IR) {
                 case LDA: {
                     load_ax(memory);
                     break;
@@ -120,7 +120,7 @@ struct CPU {
                     break;
                 }
                 default: {
-                    std::cout << "Unrecognised Instruction: [" << instr << "]" << std::endl;
+                    std::cout << "Unrecognised Instruction: [" << registers.IR << "]" << std::endl;
                     registers.dump();
                     running = 0;
                     break;

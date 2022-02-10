@@ -4,15 +4,15 @@
 #include <iostream>
 
 struct Registers {
-    int AX, BX, PC, Z, S;  // Registers
+    int AX, BX, PC, Z, S, IR;  // Registers
     void init() {
         std::cout << "Initializing Registers" << std::endl;
-        AX = BX = PC = Z = S = 0;
+        AX = BX = PC = Z = S = IR = 0;
     }
 
     void clear() {
         std::cout << "Clearing Registers" << std::endl;
-        AX = BX = Z = S = 0;
+        AX = BX = Z = S = IR = 0;
     }
 
     void dump() {
@@ -20,6 +20,7 @@ struct Registers {
         std::cout << "AX: [" << AX << "]" << std::endl;
         std::cout << "BX: [" << BX << "]" << std::endl;
         std::cout << "PC: [" << PC << "]" << std::endl;
+        std::cout << "IR: [" << IR << "]" << std::endl;
         std::cout << "Z:  [" << Z << "]" << std::endl;
         std::cout << "S:  [" << S << "]" << std::endl;
     }
