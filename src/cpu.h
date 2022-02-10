@@ -9,7 +9,7 @@
 #include "registers.h"
 
 struct CPU {
-    int running = 0;  // Program Counter and CPU Running Status
+    int running = 0;  //CPU Running Status
 
     Registers registers;  // Create Registers Object
 
