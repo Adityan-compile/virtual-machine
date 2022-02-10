@@ -1,6 +1,6 @@
 OBJS	= bin/main.o
 SOURCE	= src/main.cpp
-HEADER	= src/cpu.h src/memory.h src/instructionSet.h src/types.h src/registers.h src/flags.h
+HEADER	= src/cpu.h src/memory.h src/instructionSet.h src/registers.h
 OUT	= bin/build.out
 CC	 = g++
 FLAGS	 = -g -c -Wall

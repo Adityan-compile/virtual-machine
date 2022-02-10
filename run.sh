@@ -1,4 +1,5 @@
-echo "Performing Cleanup"
+echo ""
+echo "Starting Cleanup"
 echo ""
 make clean
 echo ""
@@ -11,3 +12,4 @@ echo ""
 echo "Running Project"
 echo ""
 make run
+echo ""

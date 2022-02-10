@@ -9,6 +9,7 @@ enum InstructionSet {
     CLR_A,  // Clear Register AX
     CLR_B,  // Clear Register BX
     CLR_F,  // Clear Flags
+    CLR,    // Clear all Registers
     INC,    // Increment value in AX
     DEC,    // Decrement value in AX
     P_AX,   // Print AX Register

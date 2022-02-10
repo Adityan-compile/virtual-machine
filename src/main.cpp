@@ -22,6 +22,7 @@ int main(void){
         1,
         ADD,
         P_AX,
+        CLR_A,
         HLT
     };
 

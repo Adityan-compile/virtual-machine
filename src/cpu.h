@@ -2,37 +2,32 @@
 #define CPU_H
 
 #include <iostream>
-#include<string>  
+#include <string>
 
-#include "flags.h"
 #include "instructionSet.h"
 #include "memory.h"
 #include "registers.h"
 
 struct CPU {
-    int PC, running = 0;  // Program Counter and CPU Running Status
+    int running = 0;  // Program Counter and CPU Running Status
 
-    Registers registers; // Create Registers Object
-
-    Flags flags; // Create Flags Object
+    Registers registers;  // Create Registers Object
 
     /*
       Reset CPU to Clean State
     */
     void reset(Memory& memory) {
         std::cout << "Resetting CPU" << std::endl;
-        PC = 0;
         registers.init();
         memory.init();
-        flags.init();
     }
 
     /*
       Fetch and Instruction and Increment Program Counter
     */
     int fetch_instruction(Memory& mem) {
-        int data = mem.read_byte(PC);
-        PC++;
+        int data = mem.read_byte(registers.PC);
+        registers.PC++;
         return data;
     }
 
@@ -51,7 +46,7 @@ struct CPU {
         int value = fetch_instruction(memory);
         registers.AX = value;
         if (registers.AX == 0) {
-            flags.Z = 0;
+            registers.Z = 0;
         }
     }
 
@@ -61,6 +56,19 @@ struct CPU {
     void load_bx(Memory& memory) {
         int value = fetch_instruction(memory);
         registers.BX = value;
+    }
+
+    /*
+      Functions for Clearing Individual Registers
+    */
+    void clear_ax() {
+        registers.AX = 0;
+    }
+    void clear_bx() {
+        registers.BX = 0;
+    }
+    void clear_flags() {
+        registers.S = registers.Z = 0;
     }
 
     /*
@@ -87,6 +95,22 @@ struct CPU {
                     std::cout << registers.BX << std::endl;
                     break;
                 }
+                case CLR: {
+                    registers.clear();
+                    break;
+                }
+                case CLR_A: {
+                    clear_ax();
+                    break;
+                }
+                case CLR_B: {
+                    clear_bx();
+                    break;
+                }
+                case CLR_F: {
+                    clear_flags();
+                    break;
+                }
                 case ADD: {
                     add();
                     break;
@@ -96,7 +120,9 @@ struct CPU {
                     break;
                 }
                 default: {
-                    std::cout << "Unrecognised Instruction: ["<<std::to_string(instr)<<"]" << std::endl;
+                    std::cout << "Unrecognised Instruction: [" << instr << "]" << std::endl;
+                    registers.dump();
+                    running = 0;
                     break;
                 }
             };
