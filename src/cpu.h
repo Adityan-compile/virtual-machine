@@ -14,7 +14,7 @@ struct CPU {
     Registers registers;  // Create Registers Object
 
     /*
-      Reset CPU to Clean State
+      Reset CPU to Clean State before Startup
     */
     void reset(Memory& memory) {
         std::cout << "Resetting CPU" << std::endl;
@@ -32,10 +32,56 @@ struct CPU {
     }
 
     /*
-       Add AX & BX Registers and Store Results into AX
+       Functions for Performing Arithmetic Operations on Registers(AX & BX)
     */
     void add() {
         int result = registers.AX + registers.BX;
+        registers.AX = result;
+    }
+
+    void sub() {
+        int result = registers.AX - registers.BX;
+        registers.AX = result;
+    }
+
+    void multiply() {
+        int result = registers.AX * registers.BX;
+        registers.AX = result;
+    }
+
+    void divide() {
+        if (registers.BX == 0) {
+            std::cout << "Cannot Divide by Zero" << std::endl;
+            registers.dump();
+            running = 0;
+            return;
+        }
+        int result = registers.AX / registers.BX;
+        registers.AX = result;
+    }
+
+    void average() {
+        int result = (registers.AX + registers.BX) / 2;
+        registers.AX = result;
+    }
+
+    /*
+      Functions for Performing Logical Operations on Registers(AX & BX)
+    */
+    void logic_and() {
+        int result = registers.AX && registers.BX;
+        registers.AX = result;
+    }
+    void logic_or() {
+        int result = registers.AX || registers.BX;
+        registers.AX = result;
+    }
+    void logic_not_ax() {
+        int result = !registers.AX;
+        registers.AX = result;
+    }
+    void logic_not_bx() {
+        int result = !registers.BX;
         registers.AX = result;
     }
 
@@ -69,6 +115,36 @@ struct CPU {
     }
     void clear_flags() {
         registers.S = registers.Z = 0;
+    }
+
+    /*
+      Set Program Counter to Specified Value
+    */
+     void jump(Memory& memory){
+         int value = fetch_instruction(memory);
+         if(value >= MAX_MEMORY){
+             std::cout<<"Memory Index Out of Bounds"<<std::endl;
+             registers.dump();
+             running = 0;
+             return;
+         }
+         registers.PC = value;
+     }
+
+    /*
+      Functions for Decrementing and Incrementing Values in Registers
+    */
+    void inc_ax() {
+        registers.AX++;
+    }
+    void dec_ax() {
+        registers.AX--;
+    }
+    void inc_bx() {
+        registers.BX++;
+    }
+    void dec_bx() {
+        registers.BX--;
     }
 
     /*
@@ -111,8 +187,63 @@ struct CPU {
                     clear_flags();
                     break;
                 }
+                case INC_AX: {
+                    inc_ax();
+                    break;
+                }
+                case DEC_AX: {
+                    dec_ax();
+                    break;
+                }
+                case INC_BX: {
+                    inc_bx();
+                    break;
+                }
+                case DEC_BX: {
+                    dec_bx();
+                    break;
+                }
                 case ADD: {
                     add();
+                    break;
+                }
+                case SUB: {
+                    sub();
+                    break;
+                }
+                case MUL: {
+                    multiply();
+                    break;
+                }
+                case DIV: {
+                    divide();
+                    break;
+                }
+                case AVG: {
+                    average();
+                    break;
+                }
+                case AND:{
+                    logic_and();
+                    break;
+                }
+                case OR:{
+                    logic_or();
+                    break;
+                }
+                case NOT_A:{
+                    logic_not_ax();
+                    break;
+                }
+                case NOT_B:{
+                    logic_not_bx();
+                    break;
+                }
+                case JMP: {
+                    jump(memory);
+                    break;
+                }
+                case NOP: {
                     break;
                 }
                 case HLT: {

@@ -10,8 +10,10 @@ enum InstructionSet {
     CLR_B,  // Clear Register BX
     CLR_F,  // Clear Flags
     CLR,    // Clear all Registers
-    INC,    // Increment value in AX
-    DEC,    // Decrement value in AX
+    INC_AX,    // Increment value in AX
+    DEC_AX,    // Decrement value in AX
+    INC_BX,    // Increment value in BX
+    DEC_BX,    // Decrement value in BX
     P_AX,   // Print AX Register
     P_BX,   // Print BX Register
 
@@ -30,7 +32,7 @@ enum InstructionSet {
 
     // CPU/FLOW Control
     NOP,  // Do Nothing
-    JMP,  // Set Program Counter to Specified Address
+    JMP,  // Set Program Counter to Specified Value
     HLT,  // Stop Program
 };
 
