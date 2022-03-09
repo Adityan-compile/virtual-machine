@@ -1,10 +1,15 @@
+#include <cstdio>
+#include <cstdlib>
+#include <fstream>
 #include <iostream>
 
 #include "cpu.h"
 #include "instructionSet.h"
 #include "memory.h"
+#include "file.h"
 
-int main(void) {
+
+int main(int argc, char** argv) {
     std::cout << "Starting Virtual Machine" << std::endl;
 
     CPU cpu;
@@ -13,26 +18,30 @@ int main(void) {
 
     cpu.reset(mem);
 
-    // Define a Simple Test Program
-    int program[] = {
-        LDA, 1,
-        LDB, 1,
-        ADD,
-        P_AX,
-        CLR,
-        LDA, 3,
-        LDB, 1,
-        SUB,
-        P_AX,
-        CLR,
-        LDA, 3,
-        LDB, 3,
-        MUL,
-        P_AX,
-        DIV,
-        P_AX,
-        HLT
-    };
+    int program[MAX_MEMORY];
+
+
+    if (argc <= 1) {
+        std::cerr << "No Filename Found" << std::endl;
+    }
+
+
+    // std::ifstream file(argv[1]);
+
+    // if (!file) {
+    //     std::cerr << "Cannot Read Program File" << std::endl;
+    //     exit(EXIT_FAILURE);
+    // }
+
+    // int i = 0,line;
+
+    // while (file >> std::hex >> line) {
+    //     program[i++] = line;
+    // }
+
+    // file.close();
+
+    read_program_file(argv[1], program);
 
     // Calculate program Size and load into memory for Execution
     int prog_size = sizeof(program) / sizeof(program[0]);
@@ -41,5 +50,5 @@ int main(void) {
 
     cpu.exec(mem);
 
-    return 0;
+    return EXIT_SUCCESS;
 }

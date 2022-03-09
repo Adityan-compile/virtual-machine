@@ -11,5 +11,5 @@ echo "Build Complete"
 echo ""
 echo "Running Project"
 echo ""
-make run
+make file=$1 run
 echo ""

@@ -22,4 +22,4 @@ clean:
 
 
 run: $(OUT)
-	./$(OUT)
+	./$(OUT) $(file)

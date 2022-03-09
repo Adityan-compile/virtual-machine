@@ -2,8 +2,10 @@
 #define MEMORY_H
 
 #include <iostream>
+#include <vector>
 
-#define MAX_MEMORY 256
+#define MAX_MEMORY 128 * 2
+using std::vector;
 
 struct Memory {
     int data[MAX_MEMORY];
@@ -18,7 +20,7 @@ struct Memory {
 
     void load_program(int *prog, int size) {
         prog_size = size;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < prog_size; i++) {
             data[i] = prog[i];
         }
     }
