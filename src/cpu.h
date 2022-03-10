@@ -104,6 +104,25 @@ struct CPU {
         registers.BX = value;
     }
 
+    // Instruction to Move Data between Registers
+    void mov(Memory& memory){
+        int op_1 = fetch_instruction(memory);
+        int op_2 = fetch_instruction(memory);
+        if(op_1 == "R_A"){
+            if(op_2 == "R_B"){
+                registers.AX = registers.BX;
+            }else{
+                registers.AX = op_2;
+            }
+        }else{
+            if(op_2 == "R_A"){
+                registers.BX = registers.AX;
+            }else{
+                registers.BX = op_2;
+            }
+        }
+    }
+
     /*
       Functions for Clearing Individual Registers
     */
@@ -161,6 +180,10 @@ struct CPU {
                 }
                 case LDB: {
                     load_bx(memory);
+                    break;
+                }
+                case MOV: {
+                    mov(memory);
                     break;
                 }
                 case P_AX: {

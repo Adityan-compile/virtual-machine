@@ -34,6 +34,7 @@ enum InstructionSet {
     NOP = 0x01F,  // Do Nothing
     JMP = 0x020,  // Set Program Counter to Specified Value
     HLT = 0x021,  // Stop Program
+    MOV = 0x022,  // Move Instruction
 };
 
 #endif

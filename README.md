@@ -7,6 +7,7 @@
 ```
     LDA     [Load Accumlator AX]
     LDB     [Load Register BX]
+    MOV     [Move to Register]
     CLR_A   [Clear Register AX]
     CLR_B   [Clear Register BX]
     CLR_F   [Clear Flags]
