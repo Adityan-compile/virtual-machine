@@ -25,23 +25,7 @@ int main(int argc, char** argv) {
         std::cerr << "No Filename Found" << std::endl;
     }
 
-
-    // std::ifstream file(argv[1]);
-
-    // if (!file) {
-    //     std::cerr << "Cannot Read Program File" << std::endl;
-    //     exit(EXIT_FAILURE);
-    // }
-
-    // int i = 0,line;
-
-    // while (file >> std::hex >> line) {
-    //     program[i++] = line;
-    // }
-
-    // file.close();
-
-    read_program_file(argv[1], program);
+    read_hex_file(argv[1], program);
 
     // Calculate program Size and load into memory for Execution
     int prog_size = sizeof(program) / sizeof(program[0]);
