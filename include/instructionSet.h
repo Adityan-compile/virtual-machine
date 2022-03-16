@@ -35,6 +35,10 @@ enum InstructionSet {
     JMP = 0x020,  // Set Program Counter to Specified Value
     HLT = 0x021,  // Stop Program
     MOV = 0x022,  // Move Instruction
+
+    // Code References for Registers
+    AX = 0x023,
+    BX = 0X024
 };
 
 #endif

@@ -108,16 +108,20 @@ struct CPU {
     void mov(Memory& memory){
         int op_1 = fetch_instruction(memory);
         int op_2 = fetch_instruction(memory);
-        if(op_1 == "R_A"){
-            if(op_2 == "R_B"){
+        if(op_1 == AX){
+            if(op_2 == BX){
+                std::cout<<"Moving BX to AX"<<std::endl;
                 registers.AX = registers.BX;
             }else{
+                std::cout<<"Assigning "<<op_2<<" To AX"<<std::endl;
                 registers.AX = op_2;
             }
         }else{
-            if(op_2 == "R_A"){
+            if(op_2 == BX){
+                std::cout<<"Moving AX to BX"<<std::endl;
                 registers.BX = registers.AX;
             }else{
+                std::cout<<"Assigning "<<op_2<<" To BX"<<std::endl;
                 registers.BX = op_2;
             }
         }

@@ -3,10 +3,10 @@
 #include <fstream>
 #include <iostream>
 
-#include "cpu.h"
-#include "instructionSet.h"
-#include "memory.h"
-#include "file.h"
+#include "../../include/cpu.h"
+#include "../../include/instructionSet.h"
+#include "../../include/memory.h"
+#include "../../include/file.h"
 
 
 int main(int argc, char** argv) {
