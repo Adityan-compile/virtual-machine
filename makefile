@@ -34,4 +34,4 @@ run_vm: $(OUT)
 	./$(VM_OUT) $(file)
 
 run_assembler: $(OUT)
-	./$(ASSEMBLER_OUT) $(file)
+	./$(ASSEMBLER_OUT) $(input_file) $(output_file)

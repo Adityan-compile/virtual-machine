@@ -76,7 +76,7 @@ struct Assembler {
         }else if (curr_inst == "MOV") {
             return;
         } else if (contains_num(curr_inst)) {
-            compiled[i] = std::stoi(curr_inst);
+            compiled[i] = std::atoi(curr_inst.c_str());
         } else {
             std::cerr << "Error: Unknown Instruction [" << curr_inst << "]" << std::endl;
             exit(EXIT_FAILURE);
@@ -92,6 +92,7 @@ struct Assembler {
 
     void save_compiled_file(std::string filename){
         int compiled_size = sizeof(compiled)/ sizeof(compiled[0]);
+        write_hex_file(filename, compiled, compiled_size);
     }
 
 };
