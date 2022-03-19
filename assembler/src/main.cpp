@@ -23,4 +23,5 @@ int main(int argc, char** argv) {
     assembler.assemble();
     assembler.save_compiled_file(argv[2]);
     
+    return EXIT_SUCCESS;
 }

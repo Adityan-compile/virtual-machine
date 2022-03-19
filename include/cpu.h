@@ -97,7 +97,7 @@ struct CPU {
     }
 
     /*
-     Load Value to AX Register
+     Load Value to BX Register
     */
     void load_bx(Memory& memory) {
         int value = fetch_instruction(memory);

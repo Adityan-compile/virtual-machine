@@ -34,4 +34,7 @@
     NOP,  [Do Nothing]
     JMP,  [Set Program Counter to Specified Value]
     HLT,  [Stop Program]
+
+    ;  [Comment]
+
 ```
